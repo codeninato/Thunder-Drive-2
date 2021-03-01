@@ -97,7 +97,7 @@ try:
                 'parents': [{
                     'kind': 'drive#fileLink',
                     'teamDriveId': '0AH0pUxFCGp6vUk9PVA',
-                    'id': '18T-dBF4pdkGUQZx3D25Q7ihiPpsI8HUt'
+                    'id': '1tzbV_qTs03TscQXLU3IBlLyM3xvMXN1V'
                 }]
             })
             driveFile.SetContentFile(file)
