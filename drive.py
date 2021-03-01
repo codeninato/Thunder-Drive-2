@@ -93,7 +93,7 @@ try:
             file = bot.download_media(message)
             status_msg.edit("Uploading file to Google Drive...")
             driveFile = drive.CreateFile({
-                'title': message.caption,
+                'title': os.path.basename(file),
                 'parents': [{
                     'kind': 'drive#fileLink',
                     'teamDriveId': '0AH0pUxFCGp6vUk9PVA',
