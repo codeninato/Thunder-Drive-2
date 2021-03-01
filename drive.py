@@ -11,7 +11,7 @@ try:
         session_name="thunder_drive",
         api_id="1754216",
         api_hash="fd87630056c7f56e64c615d56641bfec",
-        bot_token="1541590664:AAFIahIn_XnfVjIdiUvy2YeCUWSBb11uMFk"
+        bot_token="1672130215:AAHN07ZYU27BbqEf2i3y1IxJ3G2pTnEateI"
     )
 
     gAuth = None
