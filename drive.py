@@ -81,8 +81,11 @@ try:
         gauth = GoogleAuth()
 
         gauth.LoadCredentialsFile("credentials.json")
+        
+        if gauth.access_token_expired:
+            gauth.Refresh()
 
-        if gauth.credentials is None or gauth.access_token_expired:
+        if gauth.credentials is None:
             message.reply_text(
                 "No Authentication Found! Authenticate Google Drive using 'auth' command.",
                 quote = True
@@ -103,11 +106,9 @@ try:
             driveFile.SetContentFile(file)
             try:
                 driveFile.Upload(param={'supportsTeamDrives': True})
-                message.reply_text(
-                    "File successfully uploaded to Google Drive!",
-                    quote = True
+                status_msg.edit(
+                    "File successfully uploaded to Google Drive!"
                 )
-                status_msg.delete(revoke = True)
             except ApiRequestError:
                 status_msg.edit("File Upload Failed!")
 
