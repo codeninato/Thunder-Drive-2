@@ -92,7 +92,8 @@ try:
             )
         else:
             drive = GoogleDrive(gauth)
-            fileId = message.command[1].strip()
+            fileLink = message.command[1].strip()
+            fileId = fileLink.split('/')[5]
 
             status_msg = message.reply_text("Downloading file from server...", quote = True)
             downloadFile = drive.CreateFile( { 'id': fileId })
