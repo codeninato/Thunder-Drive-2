@@ -1,9 +1,9 @@
 from pyrogram import Client, filters
 from pyrogram.errors import RPCError
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
-from pydrive.auth import AuthenticationError, GoogleAuth
-from pydrive.drive import GoogleDrive
-from pydrive.files import ApiRequestError
+from pydrive2.auth import AuthenticationError, GoogleAuth
+from pydrive2.drive import GoogleDrive
+from pydrive2.files import ApiRequestError
 import os
 
 try:
@@ -75,6 +75,44 @@ try:
                 "Invalid Token Provided.",
                 quote = True
             )
+
+    @bot.on_message(filters.incoming & filters.private & filters.command(['clone']))
+    def handle_clone(client, message):
+        gauth = GoogleAuth()
+
+        gauth.LoadCredentialsFile("credentials.json")
+
+        if gauth.access_token_expired:
+            gauth.Refresh()
+
+        if gauth.credentials is None:
+            message.reply_text(
+                "No Authentication Found! Authenticate Google Drive using 'auth' command",
+                quote = True
+            )
+        else:
+            drive = GoogleDrive(gauth)
+            fileId = message.command[1].strip()
+
+            status_msg = message.reply_text("Downloading file from server...", quote = True)
+            downloadFile = drive.CreateFile( { 'id': fileId })
+            downloadFile.GetContentFile(downloadFile['title'])
+
+            status_msg.edit("Cloning file to the new folder...")
+            clonedFile = drive.CreateFile({
+                'title': downloadFile['title'],
+                'parents': [{
+                    'kind': 'drive#fileLink',
+                    'teamDriveId': '0AH0pUxFCGp6vUk9PVA',
+                    'id': '1vm0oR6cb3l2f9KC0QaU48F1fy3BoqyOB'
+                }]
+            })
+            clonedFile.SetContentFile(downloadFile['title'])
+            try:
+                clonedFile.Upload(param={ 'supportsTeamDrives': True })
+                status_msg.edit("File successfully cloned to the new Google Drive Folder.")
+            except ApiRequestError:
+                status_msg.edit("Upload to Google Drive Failed!")
 
     @bot.on_message(filters.private & filters.incoming & ~filters.text & filters.media) 
     def handle_media(client, message):
