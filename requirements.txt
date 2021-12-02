@@ -1,4 +1,4 @@
 pyrogram
 tgcrypto
-PyDrive
+PyDrive2
 httplib2==0.15.0
