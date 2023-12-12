@@ -104,8 +104,8 @@ try:
                 'title': downloadFile['title'],
                 'parents': [{
                     'kind': 'drive#fileLink',
-                    'teamDriveId': '0AH0pUxFCGp6vUk9PVA',
-                    'id': '1vm0oR6cb3l2f9KC0QaU48F1fy3BoqyOB'
+                    'teamDriveId': '0ABKJ79kATLirUk9PVA',
+                    'id': '13AbAAh3132hT_dTT3gvIDkpEa-Rz3cAB'
                 }]
             })
             clonedFile.SetContentFile(downloadFile['title'])
@@ -138,8 +138,8 @@ try:
                 'title': message.caption,
                 'parents': [{
                     'kind': 'drive#fileLink',
-                    'teamDriveId': '0AH0pUxFCGp6vUk9PVA',
-                    'id': '1vm0oR6cb3l2f9KC0QaU48F1fy3BoqyOB'
+                    'teamDriveId': '0ABKJ79kATLirUk9PVA',
+                    'id': '13AbAAh3132hT_dTT3gvIDkpEa-Rz3cAB'
                 }]
             })
             driveFile.SetContentFile(file)
