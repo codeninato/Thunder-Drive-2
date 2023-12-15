@@ -148,8 +148,8 @@ try:
                 status_msg.edit(
                     "File successfully uploaded to Google Drive!"
                 )
-            except ApiRequestError:
-                status_msg.edit("File Upload Failed!")
+            except ApiRequestError as ae:
+                status_msg.edit(ae)
 
     bot.run()
 except RPCError:
